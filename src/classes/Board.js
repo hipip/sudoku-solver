@@ -64,28 +64,6 @@ export default class Board {
     return null;
   }
 
-  solve() {
-    const emptyCell = this.findEmptyCell();
-
-    if (!emptyCell) return true;
-
-    const [i, j] = emptyCell;
-
-    for (let number = 1; number <= 9; number++) {
-      if (this.isSafeToPlace(i, j, number)) {
-        this.mat[i][j] = number;
-
-        if (this.solve()) {
-          return true;
-        }
-
-        this.mat[i][j] = 0;
-      }
-    }
-
-    return false; // Return false if no number fits in this cell
-  }
-
   toString() {
     return this.mat.map((row) => row.join(" ")).join("\n");
   }
