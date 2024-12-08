@@ -35,13 +35,26 @@ button {
   display: grid;
   grid-template-columns: repeat(9, 50px);
   grid-template-rows: repeat(9, 50px);
-  border: 2px solid black;
+  border: 1px solid black;
 }
 
 .cell {
   font-size: 1.5rem;
   text-align: center;
-  border: 2px solid black;
+  background-color: whitesmoke;
+  border: 1px solid black;
+}
+.cell.highlighted {
+  background-color: crimson;
+  color: white;
+}
+.cell[j="2"],
+.cell[j="5"] {
+  border-right: 3px solid black;
+}
+.cell[i="2"],
+.cell[i="5"] {
+  border-bottom: 3px solid black;
 }
 
 .btn {
@@ -56,7 +69,6 @@ button {
   transition: 0.3s ease;
 }
 
-.btn:hover,
-.btn:focus {
+.btn:hover {
   box-shadow: 0 0 20px -5px white;
 }

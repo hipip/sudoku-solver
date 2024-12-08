@@ -4,8 +4,17 @@ export default class Board {
   }
 
   setCell(i, j, number) {
-    this.mat[i][j] = number;
+    this.mat[i][j] = +number;
     console.log(this.toString());
+  }
+
+  findEmptyCell() {
+    for (let i = 0; i < 9; i++) {
+      for (let j = 0; j < 9; j++) {
+        if (this.mat[i][j] === 0) return [i, j];
+      }
+    }
+    return null;
   }
 
   verifyLine(i) {
@@ -43,6 +52,14 @@ export default class Board {
     }
     return true;
   }
+
+  isValid = (i, j, number) => {
+    this.mat[i][j] = number;
+    const isValid =
+      this.verifyLine(i) && this.verifyColumn(j) && this.verifySquare(i, j);
+    this.mat[i][j] = 0;
+    return isValid;
+  };
 
   toString() {
     return this.mat.map((row) => row.join(" ")).join("\n");
