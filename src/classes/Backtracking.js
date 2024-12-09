@@ -2,35 +2,27 @@ import UI from "./UI.js";
 
 export default class Backtracking {
   static async solve(board) {
-    function sleep(s) {
-      return new Promise((resolve) => setTimeout(resolve, s * 1000));
-    }
+    const emptyCell = board.findEmptyCell();
+    if (!emptyCell) return true;
 
-    async function solveHelper() {
-      const emptyCell = board.findEmptyCell();
-      if (!emptyCell) return true;
+    const [i, j] = emptyCell;
 
-      const [i, j] = emptyCell;
+    for (let number = 1; number <= 9; number++) {
+      if (board.isValid(i, j, number)) {
+        UI.highlightCell(i, j);
+        board.setCell(i, j, number);
+        UI.setCell(i, j, number);
+        await UI.sleep(100);
 
-      for (let number = 1; number <= 9; number++) {
-        if (board.isValid(i, j, number)) {
-          UI.highlightCell(i, j);
-          board.setCell(i, j, number);
-          UI.setCell(i, j, number);
-          await sleep(0.2);
+        if (await Backtracking.solve(board)) return true;
 
-          if (await solveHelper()) return true;
-
-          UI.highlightCell(i, j);
-          board.setCell(i, j, 0);
-          UI.setCell(i, j, 0);
-          await sleep(0.2);
-        }
+        UI.highlightCell(i, j);
+        board.setCell(i, j, 0);
+        UI.setCell(i, j, 0);
+        await UI.sleep(100);
       }
-
-      return false;
     }
 
-    return await solveHelper();
+    return false;
   }
 }

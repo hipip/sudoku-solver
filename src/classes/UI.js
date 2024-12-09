@@ -8,9 +8,17 @@ export default class UI {
   }
 
   static highlightCell(i, j) {
+    UI.unhighlightAll();
+    UI.getCell(i, j).classList.add("highlighted");
+  }
+
+  static unhighlightAll() {
     document
       .querySelectorAll(".cell.highlighted")
       .forEach((c) => c.classList.remove("highlighted"));
-    UI.getCell(i, j).classList.add("highlighted");
+  }
+
+  static async sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 }

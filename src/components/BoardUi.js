@@ -8,7 +8,13 @@ const Cell = (i, j) => {
   cell.value = 0;
 
   cell.oninput = () => {
-    if (isNaN(cell.value) || cell.value < 0 || cell.value > 9) cell.value = 0;
+    if (
+      isNaN(cell.value) ||
+      cell.value < 0 ||
+      cell.value > 9 ||
+      cell.value === ""
+    )
+      cell.value = 0;
     else board.setCell(i, j, cell.value);
   };
 

@@ -72,3 +72,34 @@ button {
 .btn:hover {
   box-shadow: 0 0 20px -5px white;
 }
+
+.popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8rem 5rem;
+  position: fixed;
+  left: 50%;
+  border-radius: 30px;
+  transform: translate(-50%, -50%);
+  bottom: 2rem;
+  background-color: var(--bg-color);
+  color: white;
+  transform-origin: center;
+  transition: 0.4s ease;
+  animation: popup-appear 0.35s ease;
+}
+
+@keyframes popup-appear {
+  from {
+    transform: translate(-50%, 200%);
+  }
+}
+.fade-out {
+  transform: translate(-50%, 300%);
+}
+
+.popup-text {
+  font-size: 1.4rem;
+  font-weight: 600;
+}

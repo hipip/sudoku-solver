@@ -53,13 +53,28 @@ export default class Board {
     return true;
   }
 
-  isValid = (i, j, number) => {
+  isValid(i, j, number) {
     this.mat[i][j] = number;
     const isValid =
       this.verifyLine(i) && this.verifyColumn(j) && this.verifySquare(i, j);
     this.mat[i][j] = 0;
     return isValid;
-  };
+  }
+
+  validateBoard() {
+    for (let i = 0; i < 9; i++) {
+      if (!this.verifyLine(i)) return false;
+      if (!this.verifyColumn(i)) return false;
+    }
+
+    for (let i = 0; i < 9; i += 3) {
+      for (let j = 0; j < 9; j += 3) {
+        if (!this.verifySquare(i, j)) return false;
+      }
+    }
+
+    return true;
+  }
 
   toString() {
     return this.mat.map((row) => row.join(" ")).join("\n");
