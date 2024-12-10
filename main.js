@@ -17,9 +17,9 @@ BODY.appendChild(
       const solved = await Backtracking.solve(board);
 
       if (solved) {
-        BODY.appendChild(Popup("Algorithm finished successfully!", "green"));
+        BODY.appendChild(Popup("Fin de l'algorithme!", "green"));
       } else {
-        BODY.appendChild(Popup("Could not solve the board.", "red"));
+        BODY.appendChild(Popup("Impossible de résoudre le tableau.", "red"));
       }
     } else {
       BODY.appendChild(Popup("Le tableau n'a pas de solution", "red"));

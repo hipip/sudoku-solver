@@ -15,7 +15,7 @@ const Cell = (i, j) => {
       cell.value === ""
     )
       cell.value = 0;
-    else board.setCell(i, j, cell.value);
+    board.setCell(i, j, cell.value);
   };
 
   return cell;
